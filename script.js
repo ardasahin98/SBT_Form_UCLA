@@ -63,8 +63,8 @@ function renderPage(index) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td><img src="${question.lastCycleImage}" alt="Last Cycle Image"></td>
-                        <td><img src="${question.strainCycleImage}" alt="3% Strain Cycle Image"></td>
+                        <td><img width=200px height=200px src="${question.lastCycleImage}" alt="Last Cycle Image"></td>
+                        <td><img width=200px height=200px src="${question.strainCycleImage}" alt="3% Strain Cycle Image"></td>
                     </tr>
                 </tbody>
             </table>
