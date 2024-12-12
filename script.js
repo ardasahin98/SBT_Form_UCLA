@@ -50,36 +50,43 @@ function renderPage(index) {
         const savedComments = responses[question.questionNumber]?.comments || "";
 
         questionDiv.innerHTML = `
-            <div class="question-header">
-                <h2>Question ${question.questionNumber}</h2>
-                <p><b>Number of Cycles:</b> ${question.cycleNumber}</p>
+            <div class="question-header" style="height:50px">
+                <h2>Question ${question.questionNumber}/64</h2>
+                
             </div>
-            <table class="image-table">
-                <thead>
-                    <tr>
-                        <th>Last Cycle</th>
-                        <th>3% Strain Cycle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><img width=200px height=200px src="${question.lastCycleImage}" alt="Last Cycle Image"></td>
-                        <td><img width=200px height=200px src="${question.strainCycleImage}" alt="3% Strain Cycle Image"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="multiple-choice" style="padding-left:10%">
-                <p>Please select the behavior type:</p>
-                <label><input type="radio" name="behavior_${question.questionNumber}" value="sand-like behavior" ${savedBehavior === "sand-like behavior" ? "checked" : ""}> Sand-like behavior</label><br>
-                <label><input type="radio" name="behavior_${question.questionNumber}" value="clay-like behavior" ${savedBehavior === "clay-like behavior" ? "checked" : ""}> Clay-like behavior</label><br>
-                <label><input type="radio" name="behavior_${question.questionNumber}" value="intermediate behavior" ${savedBehavior === "intermediate behavior" ? "checked" : ""}> Intermediate behavior</label><br>
-                <label><input type="radio" name="behavior_${question.questionNumber}" value="data not usable" ${savedBehavior === "data not usable" ? "checked" : ""}> Data is not usable</label>
+            <div style="justify-items:center">
+                <table class="image-table" style="width:1100px">
+                    <thead>
+                        <tr>
+                            <th>Last Cycle</th>
+                            <th>3% Strain Cycle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img width="200px" height="200px" src="${question.lastCycleImage}" alt="Last Cycle Image"></td>
+                            <td><img width="200px" height="200px" src="${question.strainCycleImage}" alt="3% Strain Cycle Image"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center;"><b>Number of Cycles:</b> ${question.cycleNumber}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="comments-section"style="padding-left:10%; padding-right:40%">
-                <h3>Comments</h3>
-                <textarea id="comments_${question.questionNumber}" rows="5" placeholder="Enter your comments here...">${savedComments}</textarea>
+            <div style="display:flex; margin-top:-40px">
+                <div class="multiple-choice" style="padding-left:20%">
+                    <p>Please select the behavior type:</p>
+                    <label><input type="radio" name="behavior_${question.questionNumber}" value="sand-like behavior" ${savedBehavior === "sand-like behavior" ? "checked" : ""}> Sand-like behavior</label><br>
+                    <label><input type="radio" name="behavior_${question.questionNumber}" value="clay-like behavior" ${savedBehavior === "clay-like behavior" ? "checked" : ""}> Clay-like behavior</label><br>
+                    <label><input type="radio" name="behavior_${question.questionNumber}" value="intermediate behavior" ${savedBehavior === "intermediate behavior" ? "checked" : ""}> Intermediate behavior</label><br>
+                    <label><input type="radio" name="behavior_${question.questionNumber}" value="data not usable" ${savedBehavior === "data not usable" ? "checked" : ""}> Data is not usable</label>
+                </div>
+                <div class="comments-section"style="padding-left:10%; width:400px">
+                    <h3>Comments</h3>
+                    <textarea id="comments_${question.questionNumber}" rows="5" placeholder="Enter your comments here...">${savedComments}</textarea>
+                </div>
             </div>
-            <div class="navigation-buttons">
+            <div class="navigation-buttons" style="margin-top:-10px">
                 <button onclick="saveAnswer(${question.questionNumber}); navigatePage(${index - 1})" ${index === 0 ? 'disabled' : ''}>Back</button>
                 <button onclick="saveAnswer(${question.questionNumber}); ${index === cachedQuestions.length - 1 ? 'navigatePage(-2)' : `navigatePage(${index + 1})`}">Next</button>
             </div>
